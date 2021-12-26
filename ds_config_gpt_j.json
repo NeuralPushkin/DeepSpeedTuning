@@ -9,14 +9,14 @@
     "stage": 3,
     "offload_param": {
       "device": "nvme",
-      "nvme_path": "/home/deepschneider/deepspeed",
+      "nvme_path": "/home/deepspeed",
       "buffer_count": 5,
       "buffer_size": 1e8,
       "max_in_cpu": 1e9
     },
     "offload_optimizer": {
       "device": "nvme",
-      "nvme_path": "/home/deepschneider/deepspeed",
+      "nvme_path": "/home/deepspeed",
       "buffer_count": 4,
       "pipeline_read": false,
       "pipeline_write": false,
