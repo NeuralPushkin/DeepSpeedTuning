@@ -6,17 +6,18 @@
     "opt_level": "O3"
   },
   "zero_optimization": {
-    "stage": 3,
+    "stage": 2,
     "offload_param": {
       "device": "nvme",
-      "nvme_path": "/home/deepspeed",
+      "nvme_path": "/home/asta/deepspeed",
       "buffer_count": 5,
       "buffer_size": 1e8,
+      "reduce_bucket_size":2e7,
       "max_in_cpu": 1e9
     },
     "offload_optimizer": {
       "device": "nvme",
-      "nvme_path": "/home/deepspeed",
+      "nvme_path": "/home/asta/deepspeed",
       "buffer_count": 4,
       "pipeline_read": false,
       "pipeline_write": false,
