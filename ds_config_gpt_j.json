@@ -1,0 +1,56 @@
+{
+  "train_batch_size": 15,
+  "fp16": {
+    "enabled": true,
+    "min_loss_scale": 1,
+    "opt_level": "O3"
+  },
+  "zero_optimization": {
+    "stage": 3,
+    "offload_param": {
+      "device": "nvme",
+      "nvme_path": "/home/deepschneider/deepspeed",
+      "buffer_count": 5,
+      "buffer_size": 1e8,
+      "max_in_cpu": 1e9
+    },
+    "offload_optimizer": {
+      "device": "nvme",
+      "nvme_path": "/home/deepschneider/deepspeed",
+      "buffer_count": 4,
+      "pipeline_read": false,
+      "pipeline_write": false,
+      "pin_memory": true
+    },
+    "allgather_partitions": true,
+    "allgather_bucket_size": 5e8,
+    "contiguous_gradients": true,
+    "overlap_comm": true,
+    "aio": {
+      "block_size": 1048576,
+      "queue_depth": 8,
+      "thread_count": 1,
+      "single_submit": false,
+      "overlap_events": true
+    }
+  },
+  "optimizer": {
+    "type": "AdamW",
+    "params": {
+      "lr": 5e-05,
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "eps": 1e-08
+    }
+  },
+  "scheduler": {
+    "type": "WarmupLR",
+    "params": {
+      "warmup_min_lr": 0,
+      "warmup_max_lr": 5e-05,
+      "warmup_num_steps": 100
+    }
+  }
+}
